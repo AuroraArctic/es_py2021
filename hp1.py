@@ -1,3 +1,4 @@
+#%%
 from pprint import pprint
 import json
 import nltk.corpus
@@ -7,7 +8,7 @@ from nltk.corpus import stopwords
 #nltk.download("averaged_perceptron_tagger")
 prepositions = stopwords.words()
 
-
+#%%
 #with open("prepositions.json") as j:
 #    data = json.loads(j.read())
 
@@ -21,20 +22,15 @@ with open("hp1.txt", "r") as f:
             line = f.readline()  
             continue
         
-        # line = line.replace(";", " ")
-        line = line.replace(";", " ").replace("'", " ")
-        # line = line.replace(";", " ").replace("'s", " ")
-        line = line.replace("!",  " ").replace("@",  " ").replace("#",  " ")
-        line = line.replace("$",  " ").replace("%",  " ").replace("^",  " ")
-        line = line.replace("&",  " ").replace("*",  " ").replace("(",  " ")
-        line = line.replace(")",  " ").replace("[",  " ").replace("]",  " ")
-        line = line.replace("{",  " ").replace("}",  " ").replace("\"", " ")
-        line = line.replace(":",  " ").replace(",",  " ").replace(".",  " ")
-        line = line.replace("/",  " ").replace("<",  " ").replace(">",  " ")
-        line = line.replace("?",  " ").replace("\\", " ").replace("|",  " ")
-        line = line.replace("`",  " ").replace("~",  " ").replace("-",  " ")
-        line = line.replace("=",  " ").replace("_",  " ").replace("+",  " ")
-        line = line.replace("  ", " ")
+        
+        symbols = [';','@','#','!',"'",
+                   '$','%','^','=','_','+',
+                   "`","~",'-','?','\\','|',
+                   '/','<','>','.',',',':',
+                   '\'','{','}','[',']',')',
+                   '(','*','&','"','  ']
+        for symbol in symbols:
+            line = line.replace(symbol," ")
         
         # prima di dividere il testo in parole mi creo una lista di tuple per ogni riga
         text = nltk.word_tokenize(line)
@@ -92,3 +88,5 @@ with open("hp1.txt", "r") as f:
 
 
 
+
+# %%
